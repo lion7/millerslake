@@ -1,0 +1,60 @@
+#summary Containts the summary of the game Miller's Lake
+#labels Featured,Phase-Requirements
+
+= Description =
+
+Miller’s Lake is a mod based on the source engine that’s currently in development.
+The idea is that in a town there was a mill that was closed down, and the character you’re playing got fired from that mill. The character decided to take a break and rented a wooden cabin in the forest for a while. The area is known as an place where a lot of bears and other dangerous wildlife is found. During the character’s break in the forest a zombie virus spreads trough the world. Eventually the character gets a radio working and hears that most big cities are swarmed with zombies. However, most small villages still remain unharmed and should start collecting weapons as the zombies are on their way to infect those villages too. The character decides to go to the town and help the people to defend against the zombie outbreak. When the character leaves the cabin and wants to go on his/her way to the town, screaming zombies are heard in the distance. This is where the game begins.
+
+
+
+= First map =
+
+_This map is probably going to be based on [http://www.youtube.com/watch?v=-KgGC3miloQ this CSS map], if we got permission from its creator_
+
+An cinematic will play in which you see the character sitting in the wooden cabin trying to get the radio to work. When he finally succeeds, you hear the radio message about collecting weapons in small villages and the character decides to go on his way. As he leaves the cabin you hear screaming zombies in the distance and the character runs inside again. This is where the player is put into control and gets his first objective: finding a weapon. After some digging you find an axe which appears to be blunt. You then have to find a way to sharpen it (still have to make up how, with a stone maybe?). After sharpening you’re axe the zombies get dangerously close. The next objective is to run to the cabin of the forester and look for help/weapons. During the trip you encounter a few bears, which you can either try to kill or run from (when you’re out of their LOS and wait a while they’ll give up and walk away). After reaching the cabin you try to open the door and find out its locked. You knock, but nothing happens. Yelling and searching around, you can’t find the forester. The next objective is to break the door with your axe and to look around. When you enter the basement you hear some noises and an zombie will come running down, blocking the stairs. The character realizes it’s the forester who’s infected with the zombie virus. You need to kill him with your axe, but the zombie has enough hp to hit you at least 2 times. Soon you’ll find out you are infected with the zombie virus too, and you have to find a cure. After finding the forester’s log you see a note about a mixture of plants and weeds which cures the zombie infection and also makes you immune to it. Before heading in the forest you search around the cabin and find a hunters rifle in a locket closet (you have to break the lock with your axe). The player now needs to go into the forest and find all the plants and weeds in the forest so he can make a cure before the infection completes. After succeeding making the cure and eating it, you have continue your journey to the town. The first map ends here.
+
+
+
+= Next maps =
+
+The main idea is that you eventually get at the town and find more healthy people. You tell everyone about the zombie virus, how you get infected and how to make a cure. All the villagers will go into the forest (armed of course) to gather the ingredients and make some of it for themselves. When they just got back and made some, you hear the zombie army approaching. You have to defend the town against a few zombie waves, completing the map. Unknown from here.
+
+
+
+= Entities =
+*Main character*
+Controlled by the player. No name yet. Has to do all the objectives. Becomes leader of the surviving people later on.
+High HP, moderate attack damage. 
+Can’t be infected by the zombie virus because you’re immune to it after the 1st map.
+
+*Humans*
+The surviving people in the towns and villages. Tries to defend their residences against zombies.
+Medium HP, moderate attack damage. 
+Can be infected by zombies. If they eat a cure in time they’ll become immune.
+
+*Bear*
+Wildlife living in the forest. Attacks zombies and humans if they get too close or threaten them.
+Medium HP, high attack damage. 
+Can be infected by zombies.
+
+*Zombie*
+Infected humans who are now brainless zombies. Attacks surviving people in great numbers.
+Low HP, moderate attack damage.
+
+*Bear zombie*
+Bear who is infected by a zombie. Much stronger than normal bears, but has some weak points.
+High HP, high attack damage. 
+
+*Zombie Lumberjack*
+Lumberjack who is infected by a zombie. Often wanders alone in the forest.
+High HP, very high attack damage, low attack speed, low movement speed.  
+
+???
+
+
+
+= Notes =
+Lion - Probably going to change the immunity from the cure. Also got some ideas about extra entities, like small groups of zombie rabbits who chew on your feet (hard to kill with rifle).
+Next maps need more of a story, besides killing the waves. Probably something like going with a group of armed survivors to a city, to find more food and weapons. They then find more survivors in the city, and take them with them to the town. 
+The last map should be something like building a palisade during the continuous zombie waves, to finally put them to a stop. This should be a hard map in which you have to help build the palisade and killing zombies at the same time. When the palisade is done you made a safe zone for survivors in which zombies can’t get in (people on watch towers kill zombies on sight).

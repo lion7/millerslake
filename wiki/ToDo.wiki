@@ -9,7 +9,25 @@ New Weapons:
 
 
 - Winchester, Double Barreled Shotgun
-- Hunting rifle - Wooden stock
+
+Hunting rifle
+either
+Lee enfield Mk1 no 3* or no 4 in .303 british
+http://t0.gstatic.com/images?q=tbn:ANd9GcQJd0yQg2ix4LxgMvjPcwgheULPswRpI2U3OLlR2JTSDCHgrnI&t=1&usg=__YpNCBm8SMa7zB-vD5kiMjkV54aU=
+or
+Springfield M1903 .30-06
+http://t3.gstatic.com/images?q=tbn:ANd9GcThDxjMbajIwaS_mzJKMHzG7XMzMVavIEWrxmE6MLLppLzU9EA&t=1&usg=__GH6ij76EP8hWfWqweXCfOt9SVYw=
+http://en.wikipedia.org/wiki/M1903_Springfield_rifle
+
+Lever action bear gun.
+Chambered in .45-70 400gr projectiles.
+http://en.wikipedia.org/wiki/Winchester_Rifle#Winchester_Model_1886
+
+Pistol.
+M1911 in .45 ACP
+http://en.wikipedia.org/wiki/M1911
+And
+http://en.wikipedia.org/wiki/Smith_and_Wesson_Model_29
 
 Iron sights & scopes - Maybe Dynamic
 

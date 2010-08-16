@@ -30,7 +30,7 @@ Introduce Inventory - Resident Evil style
 
 ----
 
-<br><br>
+<br><br><br>
 
 *Models*
 ----
@@ -47,7 +47,7 @@ Weapon Models - may use some out of css although they are kinda not what were lo
 
 
 ----
-<br><br>
+<br><br><br>
 
 
 *Maps*
@@ -60,7 +60,7 @@ The Mill
 
 ----
 
-<br><br>
+<br><br><br>
 
 *Materials/Art*
 ----
@@ -68,7 +68,7 @@ The Mill
 
 Finish off Main Menu Background image
 ----
-<br><br>
+<br><br><br>
 *Other*
 ----
 

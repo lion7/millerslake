@@ -23,30 +23,30 @@ The main idea is that you eventually get at the town and find more healthy peopl
 
 
 = Entities =
-*Main character*
+*Main character:*
 Controlled by the player. No name yet. Has to do all the objectives. Becomes leader of the surviving people later on.
 High HP, moderate attack damage. 
 Can’t be infected by the zombie virus because you’re immune to it after the 1st map.
 
-*Humans*
+*Humans:*
 The surviving people in the towns and villages. Tries to defend their residences against zombies.
 Medium HP, moderate attack damage. 
 Can be infected by zombies. If they eat a cure in time they’ll become immune.
 
-*Bear*
+*Bear:*
 Wildlife living in the forest. Attacks zombies and humans if they get too close or threaten them.
 Medium HP, high attack damage. 
 Can be infected by zombies.
 
-*Zombie*
+*Zombie:*
 Infected humans who are now brainless zombies. Attacks surviving people in great numbers.
 Low HP, moderate attack damage.
 
-*Bear zombie*
+*Bear zombie:*
 Bear who is infected by a zombie. Much stronger than normal bears, but has some weak points.
 High HP, high attack damage. 
 
-*Zombie Lumberjack*
+*Zombie Lumberjack:*
 Lumberjack who is infected by a zombie. Often wanders alone in the forest.
 High HP, very high attack damage, low attack speed, low movement speed.  
 

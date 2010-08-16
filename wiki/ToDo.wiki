@@ -1,6 +1,8 @@
+Still in the planning stages, this list may be changed alot so keep up-to-date
+
 *Code*
 ----
-
+<br>
 
 New Weapons: 
 - Winchester, Double Barreled Shotgun
@@ -13,9 +15,9 @@ Random zombie material - Easy
 Remove Headcrabs from the npc_zombies - Heaps of tutorials on this
 
 New Npc's:
--Bear
--Zombie Bear
--Zombie Rabbits?
+*Bear
+*Zombie Bear
+*Zombie Rabbits?
 
 May need a more aggressive system to dull out ai for the npc's.
 -eg, after 20m, zombies ai goes to sleep, after 50m zombies ai is almost non-existant? also might have to edit there sound.

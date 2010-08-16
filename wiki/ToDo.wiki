@@ -1,4 +1,4 @@
-#labels Hasalistofthingsstillneededtodo,Thispagewillchangefrequently-pleasekeepuptodate
+#labels Phase-Requirements
 Still in the planning stages, this list may be changed alot so keep up-to-date
 
 *Code*

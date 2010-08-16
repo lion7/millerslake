@@ -1,3 +1,19 @@
 #summary Place any info, images links or files here that others in the team could find use full...
 #labels Phase-Implementation
 
+
+
+
+
+
+*Units, Scale and measurements:*
+
+The following link has a detailed list of all the source measurements.
+
+It includes things such as jump heights player model heights, what slopes a player can walk on, units and much more.
+
+http://developer.valvesoftware.com/wiki/Scale
+
+<br>
+----
+<br><br><br><br>

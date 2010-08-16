@@ -20,8 +20,11 @@ New Npc's:
 
 
 -Bear
+
 -Zombie Bear
+
 -Zombie Rabbits?
+
 
 May need a more aggressive system to dull out ai for the npc's.
 -eg, after 20m, zombies ai goes to sleep, after 50m zombies ai is almost non-existant? also might have to edit there sound.
@@ -37,12 +40,18 @@ Introduce Inventory - Resident Evil style
 
 
 Nature models
+
 -Trees
+
 -Rocks
+
 -Logs
 
+
 Weapon Models - may use some out of css although they are kinda not what were looking for.
+
 - Winchester, Double Barreled Shotgun
+
 - Hunting rifle - Wooden stock
 
 

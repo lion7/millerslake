@@ -1,4 +1,5 @@
 *Code*
+----
 
 
 New Weapons: 
@@ -22,6 +23,7 @@ May need a more aggressive system to dull out ai for the npc's.
 Introduce Inventory - Resident Evil style
 
 *Models*
+----
 
 
 Nature models
@@ -36,6 +38,7 @@ Weapon Models - may use some out of css although they are kinda not what were lo
 
 
 *Maps*
+----
 
 
 Base Map
@@ -44,12 +47,14 @@ The Mill
 
 
 *Materials/Art*
+---
 
 
 Finish off Main Menu Background image
 
 
 *Other*
+----
 
 
 Dev Blog

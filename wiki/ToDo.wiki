@@ -23,6 +23,7 @@ Introduce Inventory - Resident Evil style
 
 *Models*
 
+
 Nature models
 -Trees
 -Rocks
@@ -35,15 +36,21 @@ Weapon Models - may use some out of css although they are kinda not what were lo
 
 
 *Maps*
+
+
 Base Map
 10-20 houses/cabins/cotages
 The Mill
 
 
 *Materials/Art*
+
+
 Finish off Main Menu Background image
 
 
 *Other*
+
+
 Dev Blog
 Development discusion board.

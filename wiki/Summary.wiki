@@ -1,4 +1,4 @@
-#summary Containts the summary of the game Miller's Lake
+#summary Contains the summary of the game Miller's Lake. Content is still open for changes. Concept version 1.
 #labels Featured,Phase-Requirements
 
 = Description =

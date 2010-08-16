@@ -5,6 +5,8 @@ Still in the planning stages, this list may be changed alot so keep up-to-date
 <br>
 
 New Weapons: 
+
+
 - Winchester, Double Barreled Shotgun
 - Hunting rifle - Wooden stock
 
@@ -15,6 +17,8 @@ Random zombie material - Easy
 Remove Headcrabs from the npc_zombies - Heaps of tutorials on this
 
 New Npc's:
+
+
 *Bear
 *Zombie Bear
 *Zombie Rabbits?

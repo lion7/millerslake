@@ -22,6 +22,8 @@ May need a more aggressive system to dull out ai for the npc's.
 
 Introduce Inventory - Resident Evil style
 
+----
+
 *Models*
 ----
 
@@ -36,6 +38,7 @@ Weapon Models - may use some out of css although they are kinda not what were lo
 - Hunting rifle - Wooden stock
 
 
+----
 
 *Maps*
 ----
@@ -45,6 +48,7 @@ Base Map
 10-20 houses/cabins/cotages
 The Mill
 
+----
 
 *Materials/Art*
 ---
@@ -59,3 +63,5 @@ Finish off Main Menu Background image
 
 Dev Blog
 Development discusion board.
+
+----

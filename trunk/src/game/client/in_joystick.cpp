@@ -6,10 +6,10 @@
 // $Date:         $
 // $NoKeywords: $
 //===========================================================================//
-#include "cbase.h"
 #if !defined( _X360 )
 #include <windows.h>
 #endif
+#include "cbase.h"
 #include "basehandle.h"
 #include "utlvector.h"
 #include "cdll_client_int.h"

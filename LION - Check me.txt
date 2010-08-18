@@ -1,0 +1,11 @@
+Made a weapon_mauser.cpp file @ src\game\shared\hl2mp
+
+Still need to ask blob how many bullets ti carries so that we know how many shells to create on reload.
+Also if it can be reloaded Singly (As in add 1 bullet then fire rather)
+
+I didn't add it to the solution yet.
+
+Seen it's a bolt action we may Have to add in another animation for pulling the bolt back after each fire. 
+Should take a look into the way the shotgun does the pump.
+
+Btw, Problems is epic:P

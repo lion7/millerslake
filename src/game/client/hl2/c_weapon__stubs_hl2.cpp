@@ -27,10 +27,8 @@ STUB_WEAPON_CLASS( weapon_citizensuitcase, WeaponCitizenSuitcase, C_WeaponCitize
 STUB_WEAPON_CLASS( weapon_mauser, WeaponMauser, C_BaseHLCombatWeapon );
 
 #ifndef HL2MP
-<<<<<<< .mine
-=======
+
 STUB_WEAPON_CLASS( weapon_enfield, WeaponEnfield, C_BaseHLCombatWeapon );
->>>>>>> .r43
 STUB_WEAPON_CLASS( weapon_ar2, WeaponAR2, C_HLMachineGun );
 STUB_WEAPON_CLASS( weapon_frag, WeaponFrag, C_BaseHLCombatWeapon );
 STUB_WEAPON_CLASS( weapon_rpg, WeaponRPG, C_BaseHLCombatWeapon );

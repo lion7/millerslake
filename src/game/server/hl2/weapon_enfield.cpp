@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Purpose:	Millers Lake Mauser - Hunting Rifle
+// Purpose:	Millers Lake Lee Enfield - Hunting Rifle
 //-----------------------------------------------------------------------------
 
 #include "cbase.h"
@@ -21,15 +21,15 @@
 #include "tier0/memdbgon.h"
 
 //-----------------------------------------------------------------------------
-// CWeaponMauser
+// CWeaponEnfield
 //-----------------------------------------------------------------------------
 
-class CWeaponMauser : public CBaseHLCombatWeapon
+class CWeaponEnfield : public CBaseHLCombatWeapon
 {
-	DECLARE_CLASS( CWeaponMauser, CBaseHLCombatWeapon );
+	DECLARE_CLASS( CWeaponEnfield, CBaseHLCombatWeapon );
 public:
 
-	CWeaponMauser( void );
+	CWeaponEnfield( void );
 
 	void	PrimaryAttack( void );
 	void	Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatCharacter *pOperator );
@@ -40,29 +40,30 @@ public:
 	DECLARE_DATADESC();
 };
 
-LINK_ENTITY_TO_CLASS( weapon_Mauser, CWeaponMauser );
+LINK_ENTITY_TO_CLASS( weapon_Enfield, CWeaponEnfield );
 
-PRECACHE_WEAPON_REGISTER( weapon_Mauser );
+PRECACHE_WEAPON_REGISTER( weapon_Enfield );
 
-IMPLEMENT_SERVERCLASS_ST( CWeaponMauser, DT_WeaponMauser )
+IMPLEMENT_SERVERCLASS_ST( CWeaponEnfield, DT_WeaponEnfield )
 END_SEND_TABLE()
 
-BEGIN_DATADESC( CWeaponMauser )
+BEGIN_DATADESC( CWeaponEnfield )
 END_DATADESC()
 
 //-----------------------------------------------------------------------------
 // Purpose: Constructor
 //-----------------------------------------------------------------------------
-CWeaponMauser::CWeaponMauser( void )
+CWeaponEnfield::CWeaponEnfield( void )
 {
-	m_bReloadsSingly	= false; // Millers Lake - Problems - 18-08-2010: Have to find out if it uses a clip or if you can just insert 1 shell at a time.
+	m_bReloadsSingly	= false;   // Millers Lake - Problems - 18-08-2010: The animation will use a stripper clip so the guns fully reloaded after using two full stripper clips(5 in each).
+								   //Have to set it so that it relaods 5 bullets at a time. If it's to hard well just use normal reload (1 at a time).
 	m_bFiresUnderwater	= false; // Millers Lake - Problems - 18-08-2010: Water logged :P
 }
 
 //-----------------------------------------------------------------------------
 // Purpose:
 //-----------------------------------------------------------------------------
-void CWeaponMauser::Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatCharacter *pOperator )
+void CWeaponEnfield::Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatCharacter *pOperator )
 {
 	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
 
@@ -73,7 +74,7 @@ void CWeaponMauser::Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatCh
 				CEffectData data;
 
 				// Emit six shells on reload
-				for ( int i = 0; i < 6; i++ ) // Millers Lake - Problems - 18-08-2010: How many bullets can the gun hold? Ask blob? 
+				for ( int i = 0; i < 10; i++ ) // Millers Lake - Problems - 18-08-2010: How many bullets can the gun hold? 10 for now.
 				{
 					data.m_vOrigin = pOwner->WorldSpaceCenter() + RandomVector( -4, 4 );
 					data.m_vAngles = QAngle( 90, random->RandomInt( 0, 360 ), 0 );
@@ -90,7 +91,7 @@ void CWeaponMauser::Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatCh
 //-----------------------------------------------------------------------------
 // Purpose:
 //-----------------------------------------------------------------------------
-void CWeaponMauser::PrimaryAttack( void )
+void CWeaponEnfield::PrimaryAttack( void )
 {
 	// Only the player fires this way so we can cast.
 	CBasePlayer *pPlayer = ToBasePlayer( GetOwner() );
@@ -124,7 +125,7 @@ void CWeaponMauser::PrimaryAttack( void )
 	SendWeaponAnim( ACT_VM_PRIMARYATTACK );
 	pPlayer->SetAnimation( PLAYER_ATTACK1 );
 
-	m_flNextPrimaryAttack = gpGlobals->curtime + 0.75; // Millers Lake - Problems - 18-08-2010: find out the Mausers fire rate.
+	m_flNextPrimaryAttack = gpGlobals->curtime + 0.75; // Millers Lake - Problems - 18-08-2010: Doesn't really have a fire rate. Need to just do curtime + animation time.
 	m_flNextSecondaryAttack = gpGlobals->curtime + 0.75; // Millers Lake - Problems - 18-08-2010: Don't have a secondary fire but may as well set it up. Hope it doesn't conflict with the zoom (Uses +attack_2).
 
 	m_iClip1--;

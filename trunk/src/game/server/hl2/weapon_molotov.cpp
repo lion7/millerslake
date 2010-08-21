@@ -8,17 +8,17 @@
 //=============================================================================//
 
 #include "cbase.h"
-#include	"NPCEvent.h"
-#include	"basehlcombatweapon.h"
-#include	"basecombatcharacter.h"
-#include	"AI_BaseNPC.h"
-#include	"AI_Memory.h"
-#include	"player.h"
-#include	"gamerules.h"		// For g_pGameRules
-#include	"weapon_molotov.h"
-#include	"grenade_molotov.h"
-#include	"in_buttons.h"
-#include	"game.h"			
+#include "NPCEvent.h"
+#include "basehlcombatweapon.h"
+#include "basecombatcharacter.h"
+#include "AI_BaseNPC.h"
+#include "AI_Memory.h"
+#include "player.h"
+#include "gamerules.h" // For g_pGameRules
+#include "weapon_molotov.h"
+#include "grenade_molotov.h"
+#include "in_buttons.h"
+#include "game.h"
 #include "vstdlib/random.h"
 #include "movevars_shared.h"
 

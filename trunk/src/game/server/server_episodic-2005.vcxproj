@@ -452,7 +452,6 @@ if exist "$(TargetDir)"server.dll copy "$(TargetDir)"server.dll "bin\server.dll"
     <ClCompile Include="globalstate.cpp" />
     <ClCompile Include="grenadethrown.cpp" />
     <ClCompile Include="guntarget.cpp" />
-    <ClCompile Include="hl2\weapon_mauser.cpp" />
     <ClCompile Include="h_ai.cpp" />
     <ClCompile Include="h_cycler.cpp" />
     <ClCompile Include="h_export.cpp">

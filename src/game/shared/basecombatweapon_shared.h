@@ -137,6 +137,10 @@ public:
 							CBaseCombatWeapon();
 	virtual 				~CBaseCombatWeapon();
 
+	Vector					GetIronsightPositionOffset( void ) const; //Millers Lake - Problems - 26-8-2010: These three are for writing the offsets for the viewmodel when ironsights are up.
+	QAngle					GetIronsightAngleOffset( void ) const;//Millers Lake - Problems - 26-8-2010: These three are for writing the offsets for the viewmodel when ironsights are up.
+	float					GetIronsightFOVOffset( void ) const;//Millers Lake - Problems - 26-8-2010: These three are for writing the offsets for the viewmodel when ironsights are up.
+
 	// A derived weapon class should return true here so that weapon sounds, etc, can
 	//  apply the proper filter
 	virtual bool			IsPredicted( void ) const { return false; }
@@ -473,6 +477,22 @@ public:
 
 	// Networked fields
 	CNetworkVar( int, m_nViewModelIndex );
+
+
+	CNetworkVar( bool, m_bIsIronsighted ); //Millers Lake - Problems - 26-08-2010:Ironsights
+	CNetworkVar( float, m_flIronsightedTime ); //Millers Lake - Problems - 26-08-2010:Ironsights
+	
+
+// Milers Lake - Problems - 26-08-2010: Ironsights
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------
+virtual bool				HasIronsights( void ) { return true; } //default yes; override and return false for weapons with no ironsights (like weapon_crowbar)
+	bool					IsIronsighted( void );
+	void					ToggleIronsights( void ) { m_bIsIronsighted ? DisableIronsights() : EnableIronsights(); }
+	void					EnableIronsights( void );
+	void					DisableIronsights( void );
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 	// Weapon firing
 	CNetworkVar( float, m_flNextPrimaryAttack );						// soonest time ItemPostFrame will call PrimaryAttack

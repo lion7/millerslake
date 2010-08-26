@@ -346,8 +346,37 @@ extern ConVar hud_fastswitch;
 
 void FileWeaponInfo_t::Parse( KeyValues *pKeyValuesData, const char *szWeaponName )
 {
+
 	// Okay, we tried at least once to look this up...
 	bParsedScript = true;
+
+
+	// Millers Lake - Problems - 26-8-2010: Ironsights (START)
+		KeyValues *pSights = pKeyValuesData->FindKey( "IronSight" );
+	if (pSights)
+	{
+		vecIronsightPosOffset.x		= pSights->GetFloat( "forward", 0.0f );
+		vecIronsightPosOffset.y		= pSights->GetFloat( "right", 0.0f );
+		vecIronsightPosOffset.z		= pSights->GetFloat( "up", 0.0f );
+ 
+		angIronsightAngOffset[PITCH]	= pSights->GetFloat( "pitch", 0.0f );
+		angIronsightAngOffset[YAW]		= pSights->GetFloat( "yaw", 0.0f );
+		angIronsightAngOffset[ROLL]		= pSights->GetFloat( "roll", 0.0f );
+ 
+		flIronsightFOVOffset		= pSights->GetFloat( "fov", 0.0f );
+	}
+	else
+	{
+		//note: you can set a bool here if you'd like to disable ironsights for weapons with no IronSight-key
+		vecIronsightPosOffset = vec3_origin;
+		angIronsightAngOffset.Init();
+		flIronsightFOVOffset = 0.0f;
+	}
+	// Millers Lake - Problems - 26-8-2010: Ironsights (END)
+
+
+
+
 
 	// Classname
 	Q_strncpy( szClassName, szWeaponName, MAX_WEAPON_STRING );

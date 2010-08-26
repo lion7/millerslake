@@ -20,6 +20,7 @@ class CBaseCombatWeapon;
 class CBaseCombatCharacter;
 class CVGuiScreen;
 
+
 #if defined( CLIENT_DLL )
 #define CBaseViewModel C_BaseViewModel
 #define CBaseCombatWeapon C_BaseCombatWeapon
@@ -82,6 +83,8 @@ public:
 	{
 		return true;
 	}
+	
+ 	void		CalcIronsights( Vector &pos, QAngle &ang );
 
 	Vector					m_vecLastFacing;
 
@@ -155,7 +158,9 @@ public:
 	virtual void			FormatViewModelAttachment( int nAttachment, matrix3x4_t &attachmentToWorld );
 	virtual bool			IsViewModel() const;
 	
+	// Millers Lake - Problems: var needed for ironsights
 	CBaseCombatWeapon		*GetWeapon() const { return m_hWeapon.Get(); }
+	
 
 #ifdef CLIENT_DLL
 	virtual bool			ShouldResetSequenceOnNewModel( void ) { return false; }

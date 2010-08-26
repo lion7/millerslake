@@ -19,8 +19,11 @@
 #include "bitbuf.h"
 #include "checksum_md5.h"
 #include "hltvcamera.h"
+//#include "BasePlayer.h" // Millers Lake - Problems - 26-08-2010: Ironsights
+//#include "BaseCombatWeapon" // Millers Lake - Problems - 26-08-2010: Ironsights
 #include <ctype.h> // isalnum()
 #include <voice_status.h>
+
 
 extern ConVar in_joystick;
 extern ConVar cam_idealpitch;
@@ -1369,6 +1372,28 @@ float CInput::GetLastForwardMove( void )
 // Purpose: back channel contact info for ground contact
 // Output :
 //-----------------------------------------------------------------------------
+
+
+// Millers Lake - Problems - 26-08-2010: Ironsights
+//---------------------------------------------------------------------
+void CC_ToggleIronSights( void )
+{
+	CBasePlayer* pPlayer = C_BasePlayer::GetLocalPlayer();
+	if ( pPlayer == NULL )
+		return;
+ 
+	CBaseCombatWeapon *pWeapon = pPlayer->GetActiveWeapon();
+	if( pWeapon == NULL )
+		return;
+ 
+	pWeapon->ToggleIronsights();
+ 
+	engine->ServerCmd( "toggle_ironsight" ); //forward to server
+}
+ 
+static ConCommand toggle_ironsight("toggle_ironsight", CC_ToggleIronSights);
+//--------------------------------------------------------------------------
+
 
 void CInput::AddIKGroundContactInfo( int entindex, float minheight, float maxheight )
 {

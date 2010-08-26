@@ -3,7 +3,7 @@
 WeaponData
 {
 	// Weapon data is loaded by both the Game and Client DLLs.
-	"printname"	"#ML_enfield"
+	"printname"			"#MillersLake_enfield"
 	"viewmodel"			"models/weapons/v_pistol.mdl"
 	"playermodel"		"models/weapons/w_pistol.mdl"
 	"anim_prefix"		"enfield"
@@ -15,7 +15,7 @@ WeaponData
 	"secondary_ammo"	"None"
 
 	"weight"			"3"
-	"item_flags"			"0"
+	"item_flags"		"0"
 	"damage"			"50"
 
 	// Sounds for the weapon. There is a max of 16 sounds per category (i.e. max 16 "single_shot" sounds)

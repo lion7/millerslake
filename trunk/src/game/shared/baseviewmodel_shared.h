@@ -158,7 +158,7 @@ public:
 	virtual void			FormatViewModelAttachment( int nAttachment, matrix3x4_t &attachmentToWorld );
 	virtual bool			IsViewModel() const;
 	
-	// Millers Lake - Problems: var needed for ironsights
+	// Millers Lake - Problems: Gets the current weapon. Needed for Iron Sights.
 	CBaseCombatWeapon		*GetWeapon() const { return m_hWeapon.Get(); }
 	
 

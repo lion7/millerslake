@@ -19,8 +19,6 @@
 #include "bitbuf.h"
 #include "checksum_md5.h"
 #include "hltvcamera.h"
-//#include "BasePlayer.h" // Millers Lake - Problems - 26-08-2010: Ironsights
-//#include "BaseCombatWeapon" // Millers Lake - Problems - 26-08-2010: Ironsights
 #include <ctype.h> // isalnum()
 #include <voice_status.h>
 
@@ -1374,7 +1372,7 @@ float CInput::GetLastForwardMove( void )
 //-----------------------------------------------------------------------------
 
 
-// Millers Lake - Problems - 26-08-2010: Ironsights
+// Millers Lake - Problems - 26-08-2010: Console command to toggle the Iron Sights.
 //---------------------------------------------------------------------
 void CC_ToggleIronSights( void )
 {

@@ -351,8 +351,9 @@ void FileWeaponInfo_t::Parse( KeyValues *pKeyValuesData, const char *szWeaponNam
 	bParsedScript = true;
 
 
-	// Millers Lake - Problems - 26-8-2010: Ironsights (START)
-		KeyValues *pSights = pKeyValuesData->FindKey( "IronSight" );
+	// Millers Lake - Problems - 26-8-2010: Parse custom script-variables to be able to adjust the ironsight-offset via the weapon-script
+	//---------------------------------------------------------------------
+	KeyValues *pSights = pKeyValuesData->FindKey( "IronSight" );
 	if (pSights)
 	{
 		vecIronsightPosOffset.x		= pSights->GetFloat( "forward", 0.0f );
@@ -372,7 +373,7 @@ void FileWeaponInfo_t::Parse( KeyValues *pKeyValuesData, const char *szWeaponNam
 		angIronsightAngOffset.Init();
 		flIronsightFOVOffset = 0.0f;
 	}
-	// Millers Lake - Problems - 26-8-2010: Ironsights (END)
+	//---------------------------------------------------------------------
 
 
 

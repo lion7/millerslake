@@ -508,7 +508,7 @@ static void RecvProxy_Weapon( const CRecvProxyData *pData, void *pStruct, void *
 }
 #endif
 
-//Millers lake - Problems - 26-08-2010:Ironsights
+//Millers lake - Problems - 26-08-2010: Calculates vector and angle for Iron Sights.
 void CBaseViewModel::CalcIronsights( Vector &pos, QAngle &ang )
 {
 	CBaseCombatWeapon *pWeapon = GetOwningWeapon();

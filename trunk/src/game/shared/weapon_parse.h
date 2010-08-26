@@ -77,6 +77,10 @@ public:
 	bool					bParsedScript;
 	bool					bLoadedHudElements;
 
+	Vector					vecIronsightPosOffset;// Millers Lake - Problems - 26-08-2010: Ironsights Offset position.
+	QAngle					angIronsightAngOffset;// Millers Lake - Problems - 26-08-2010: Ironsights Offset angle.
+	float					flIronsightFOVOffset; // Millers Lake - Problems - 26-08-2010: ?
+
 // SHARED
 	char					szClassName[MAX_WEAPON_STRING];
 	char					szPrintName[MAX_WEAPON_STRING];			// Name for showing in HUD, etc.

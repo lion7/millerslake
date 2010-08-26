@@ -30,6 +30,23 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+
+// Millers Lake - Problems - 26-8-2010: These ajust the offesets for the iron sights
+//forward declarations of callbacks used by viewmodel_adjust_enable and viewmodel_adjust_fov
+void vm_adjust_enable_callback( IConVar *pConVar, char const *pOldString, float flOldValue );
+void vm_adjust_fov_callback( IConVar *pConVar, const char *pOldString, float flOldValue );
+ 
+ConVar viewmodel_adjust_forward( "viewmodel_adjust_forward", "0", FCVAR_REPLICATED );
+ConVar viewmodel_adjust_right( "viewmodel_adjust_right", "0", FCVAR_REPLICATED );
+ConVar viewmodel_adjust_up( "viewmodel_adjust_up", "0", FCVAR_REPLICATED );
+ConVar viewmodel_adjust_pitch( "viewmodel_adjust_pitch", "0", FCVAR_REPLICATED );
+ConVar viewmodel_adjust_yaw( "viewmodel_adjust_yaw", "0", FCVAR_REPLICATED );
+ConVar viewmodel_adjust_roll( "viewmodel_adjust_roll", "0", FCVAR_REPLICATED );
+ConVar viewmodel_adjust_fov( "viewmodel_adjust_fov", "0", FCVAR_REPLICATED, "Note: this feature is not available during any kind of zoom", vm_adjust_fov_callback );
+ConVar viewmodel_adjust_enabled( "viewmodel_adjust_enabled", "0", FCVAR_REPLICATED|FCVAR_CHEAT, "enabled viewmodel adjusting", vm_adjust_enable_callback );
+
+
+
 // The minimum time a hud hint for a weapon should be on screen. If we switch away before
 // this, then teh hud hint counter will be deremented so the hint will be shown again, as
 // if it had never been seen. The total display time for a hud hint is specified in client
@@ -40,12 +57,17 @@
 
 extern bool UTIL_ItemCanBeTouchedByPlayer( CBaseEntity *pItem, CBasePlayer *pPlayer );
 
+
 CBaseCombatWeapon::CBaseCombatWeapon()
 {
 	// Constructor must call this
-	// CONSTRUCT_PREDICTABLE( CBaseCombatWeapon );
+	///CONSTRUCT_PREDICTABLE( CBaseCombatWeapon );
 
 	// Some default values.  There should be set in the particular weapon classes
+
+	m_bIsIronsighted = false; // Milers Lake - Problems- 26-08-2010: Ironsights
+	m_flIronsightedTime = 0.0f; // Milers Lake - Problems- 26-08-2010: Ironsights
+
 	m_fMinRange1		= 65;
 	m_fMinRange2		= 65;
 	m_fMaxRange1		= 1024;
@@ -130,6 +152,112 @@ void CBaseCombatWeapon::GiveDefaultAmmo( void )
 		m_iClip2 = WEAPON_NOCLIP;
 	}
 }
+
+
+// Millers Lake - Problems - 26-8-2010: These ajust the offesets for the iron sights.
+//----------------------------------------------------------------------------------------------------------------------------------------
+Vector CBaseCombatWeapon::GetIronsightPositionOffset( void ) const
+{
+	if( viewmodel_adjust_enabled.GetBool() )
+		return Vector( viewmodel_adjust_forward.GetFloat(), viewmodel_adjust_right.GetFloat(), viewmodel_adjust_up.GetFloat() );
+	return GetWpnData().vecIronsightPosOffset;
+}
+ 
+QAngle CBaseCombatWeapon::GetIronsightAngleOffset( void ) const
+{
+	if( viewmodel_adjust_enabled.GetBool() )
+		return QAngle( viewmodel_adjust_pitch.GetFloat(), viewmodel_adjust_yaw.GetFloat(), viewmodel_adjust_roll.GetFloat() );
+	return GetWpnData().angIronsightAngOffset;
+}
+ 
+float CBaseCombatWeapon::GetIronsightFOVOffset( void ) const
+{
+	if( viewmodel_adjust_enabled.GetBool() )
+		return viewmodel_adjust_fov.GetFloat();
+	return GetWpnData().flIronsightFOVOffset;
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+bool CBaseCombatWeapon::IsIronsighted( void )
+{
+	return ( m_bIsIronsighted || viewmodel_adjust_enabled.GetBool() );
+}
+ 
+void CBaseCombatWeapon::EnableIronsights( void )
+{
+	if( !HasIronsights() || m_bIsIronsighted )
+		return;
+ 
+	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
+ 
+	if( !pOwner )
+		return;
+ 
+	if( pOwner->SetFOV( this, pOwner->GetDefaultFOV()+GetIronsightFOVOffset(), 1.0f ) ) //modify the last value to adjust how fast the fov is applied
+	{
+		m_bIsIronsighted = true;
+		m_flIronsightedTime = gpGlobals->curtime;
+	}
+}
+
+// Millers Lake - Problems - 26-08-2010: Iron sights
+ //-------------------------------------------------------------------------------------------------------------------------------
+void CBaseCombatWeapon::DisableIronsights( void )
+{
+	if( !HasIronsights() || !m_bIsIronsighted )
+		return;
+ 
+	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
+ 
+	if( !pOwner )
+		return;
+ 
+	if( pOwner->SetFOV( this, 0, 0.4f ) ) //modify the last value to adjust how fast the fov is applied
+	{
+		m_bIsIronsighted = false;
+		m_flIronsightedTime = gpGlobals->curtime;
+	}
+}
+ //-------------------------------------------------------------------------------------------------------------------------------
+ 
+
+void vm_adjust_enable_callback( IConVar *pConVar, char const *pOldString, float flOldValue )
+{
+	ConVarRef sv_cheats( "sv_cheats" );
+	if( !sv_cheats.IsValid() || sv_cheats.GetBool() )
+		return;
+ 
+	ConVarRef var( pConVar );
+ 
+	if( var.GetBool() )
+		var.SetValue( "0" );
+}
+ 
+void vm_adjust_fov_callback( IConVar *pConVar, char const *pOldString, float flOldValue )
+{
+	if( !viewmodel_adjust_enabled.GetBool() )
+		return;
+ 
+	ConVarRef var( pConVar );
+ 
+	CBasePlayer *pPlayer = 
+#ifdef GAME_DLL
+		UTIL_GetLocalPlayer();
+#else
+		C_BasePlayer::GetLocalPlayer();
+#endif
+	if( !pPlayer )
+		return;
+ 
+	if( !pPlayer->SetFOV( pPlayer, pPlayer->GetDefaultFOV()+var.GetFloat(), 0.1f ) )
+	{
+		Warning( "Could not set FOV\n" );
+		var.SetValue( "0" );
+	}
+}
+//-----------------------------------------------------------------------------------------------------------------
+
 
 //-----------------------------------------------------------------------------
 // Purpose: Set mode to world model and start falling to the ground
@@ -604,6 +732,7 @@ float CBaseCombatWeapon::GetWeaponIdleTime( void )
 //-----------------------------------------------------------------------------
 void CBaseCombatWeapon::Drop( const Vector &vecVelocity )
 {
+		DisableIronsights();
 #if !defined( CLIENT_DLL )
 
 	// Once somebody drops a gun, it's fair game for removal when/if
@@ -1384,6 +1513,7 @@ Activity CBaseCombatWeapon::GetDrawActivity( void )
 //-----------------------------------------------------------------------------
 bool CBaseCombatWeapon::Holster( CBaseCombatWeapon *pSwitchingTo )
 { 
+	DisableIronsights();
 	MDLCACHE_CRITICAL_SECTION();
 
 	// cancel any reload in progress.
@@ -1879,6 +2009,7 @@ bool CBaseCombatWeapon::DefaultReload( int iClipSize1, int iClipSize2, int iActi
 //-----------------------------------------------------------------------------
 bool CBaseCombatWeapon::Reload( void )
 {
+	DisableIronsights();
 	return DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD );
 }
 
@@ -2231,6 +2362,12 @@ Activity CBaseCombatWeapon::ActivityOverride( Activity baseAct, bool *pRequired 
 
 
 #if defined( CLIENT_DLL )
+// Millers Lake - Problems :  proxy or smting, gonna fix comment later
+void RecvProxy_ToggleSights( const CRecvProxyData* pData, void* pStruct, void* pOut )
+{
+	CBaseCombatWeapon *pWeapon = (CBaseCombatWeapon*)pStruct;
+	pData->m_Value.m_Int ? pWeapon->EnableIronsights() : pWeapon->DisableIronsights();
+}
 
 BEGIN_PREDICTION_DATA( CBaseCombatWeapon )
 
@@ -2238,12 +2375,16 @@ BEGIN_PREDICTION_DATA( CBaseCombatWeapon )
 	// Networked
 	DEFINE_PRED_FIELD( m_hOwner, FIELD_EHANDLE, FTYPEDESC_INSENDTABLE ),
 	// DEFINE_FIELD( m_hWeaponFileInfo, FIELD_SHORT ),
+
 	DEFINE_PRED_FIELD( m_iState, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),			 
 	DEFINE_PRED_FIELD( m_iViewModelIndex, FIELD_INTEGER, FTYPEDESC_INSENDTABLE | FTYPEDESC_MODELINDEX ),
 	DEFINE_PRED_FIELD( m_iWorldModelIndex, FIELD_INTEGER, FTYPEDESC_INSENDTABLE | FTYPEDESC_MODELINDEX ),
 	DEFINE_PRED_FIELD_TOL( m_flNextPrimaryAttack, FIELD_FLOAT, FTYPEDESC_INSENDTABLE, TD_MSECTOLERANCE ),	
 	DEFINE_PRED_FIELD_TOL( m_flNextSecondaryAttack, FIELD_FLOAT, FTYPEDESC_INSENDTABLE, TD_MSECTOLERANCE ),
 	DEFINE_PRED_FIELD_TOL( m_flTimeWeaponIdle, FIELD_FLOAT, FTYPEDESC_INSENDTABLE, TD_MSECTOLERANCE ),
+
+	DEFINE_PRED_FIELD( m_bIsIronsighted, FIELD_BOOLEAN, FTYPEDESC_INSENDTABLE ), // Millers Lake - Problems - 26-08-2010: Iron sights
+	DEFINE_PRED_FIELD( m_flIronsightedTime, FIELD_FLOAT, FTYPEDESC_INSENDTABLE ), // Millers Lake - Problems - 26-08-2010: Iron sights
 
 	DEFINE_PRED_FIELD( m_iPrimaryAmmoType, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD( m_iSecondaryAmmoType, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
@@ -2271,6 +2412,9 @@ BEGIN_PREDICTION_DATA( CBaseCombatWeapon )
 	DEFINE_FIELD( m_bRemoveable, FIELD_BOOLEAN ),
 	DEFINE_FIELD( m_iPrimaryAmmoCount, FIELD_INTEGER ),
 	DEFINE_FIELD( m_iSecondaryAmmoCount, FIELD_INTEGER ),
+
+	DEFINE_FIELD( m_bIsIronsighted, FIELD_BOOLEAN ),// Millers Lake - Problems - 26-08-2010: Iron sights
+	DEFINE_FIELD( m_flIronsightedTime, FIELD_FLOAT ),// Millers Lake - Problems - 26-08-2010: Iron sights
 
 	//DEFINE_PHYSPTR( m_pConstraint ),
 
@@ -2457,6 +2601,7 @@ BEGIN_NETWORK_TABLE_NOBASE( CBaseCombatWeapon, DT_LocalWeaponData )
 	SendPropInt( SENDINFO(m_iPrimaryAmmoType ), 8 ),
 	SendPropInt( SENDINFO(m_iSecondaryAmmoType ), 8 ),
 
+
 	SendPropInt( SENDINFO( m_nViewModelIndex ), VIEWMODEL_INDEX_BITS, SPROP_UNSIGNED ),
 
 #if defined( TF_DLL )
@@ -2482,6 +2627,8 @@ BEGIN_NETWORK_TABLE(CBaseCombatWeapon, DT_BaseCombatWeapon)
 	SendPropModelIndex( SENDINFO(m_iWorldModelIndex) ),
 	SendPropInt( SENDINFO(m_iState ), 8, SPROP_UNSIGNED ),
 	SendPropEHandle( SENDINFO(m_hOwner) ),
+	SendPropBool( SENDINFO( m_bIsIronsighted ) ),//Milelrs Lake - Problems - 28-08-2010: Ironsights
+	SendPropFloat( SENDINFO( m_flIronsightedTime ) ),//Milelrs Lake - Problems - 28-08-2010: Ironsights
 #else
 	RecvPropDataTable("LocalWeaponData", 0, 0, &REFERENCE_RECV_TABLE(DT_LocalWeaponData)),
 	RecvPropDataTable("LocalActiveWeaponData", 0, 0, &REFERENCE_RECV_TABLE(DT_LocalActiveWeaponData)),
@@ -2489,5 +2636,7 @@ BEGIN_NETWORK_TABLE(CBaseCombatWeapon, DT_BaseCombatWeapon)
 	RecvPropInt( RECVINFO(m_iWorldModelIndex)),
 	RecvPropInt( RECVINFO(m_iState )),
 	RecvPropEHandle( RECVINFO(m_hOwner ) ),
+	RecvPropInt( RECVINFO( m_bIsIronsighted ), 0, RecvProxy_ToggleSights ), //Milelrs Lake - Problems - 28-08-2010: Ironsights - RecvPropBool is actually RecvPropInt (see its implementation), but we need a proxy
+	RecvPropFloat( RECVINFO( m_flIronsightedTime ) ),//Milelrs Lake - Problems - 28-08-2010: Ironsights
 #endif
 END_NETWORK_TABLE()

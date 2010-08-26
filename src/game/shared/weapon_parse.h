@@ -79,7 +79,7 @@ public:
 
 	Vector					vecIronsightPosOffset;// Millers Lake - Problems - 26-08-2010: Ironsights Offset position.
 	QAngle					angIronsightAngOffset;// Millers Lake - Problems - 26-08-2010: Ironsights Offset angle.
-	float					flIronsightFOVOffset; // Millers Lake - Problems - 26-08-2010: ?
+	float					flIronsightFOVOffset; // Millers Lake - Problems - 26-08-2010: Ironsights Field of View Offest.
 
 // SHARED
 	char					szClassName[MAX_WEAPON_STRING];

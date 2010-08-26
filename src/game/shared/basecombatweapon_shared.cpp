@@ -31,11 +31,12 @@
 #include "tier0/memdbgon.h"
 
 
-// Millers Lake - Problems - 26-8-2010: These ajust the offesets for the iron sights
+// Millers Lake - Problems - 26-8-2010: These adjust the offsets for the iron sights
+//---------------------------------------------------------------------
 //forward declarations of callbacks used by viewmodel_adjust_enable and viewmodel_adjust_fov
 void vm_adjust_enable_callback( IConVar *pConVar, char const *pOldString, float flOldValue );
 void vm_adjust_fov_callback( IConVar *pConVar, const char *pOldString, float flOldValue );
- 
+
 ConVar viewmodel_adjust_forward( "viewmodel_adjust_forward", "0", FCVAR_REPLICATED );
 ConVar viewmodel_adjust_right( "viewmodel_adjust_right", "0", FCVAR_REPLICATED );
 ConVar viewmodel_adjust_up( "viewmodel_adjust_up", "0", FCVAR_REPLICATED );
@@ -44,6 +45,7 @@ ConVar viewmodel_adjust_yaw( "viewmodel_adjust_yaw", "0", FCVAR_REPLICATED );
 ConVar viewmodel_adjust_roll( "viewmodel_adjust_roll", "0", FCVAR_REPLICATED );
 ConVar viewmodel_adjust_fov( "viewmodel_adjust_fov", "0", FCVAR_REPLICATED, "Note: this feature is not available during any kind of zoom", vm_adjust_fov_callback );
 ConVar viewmodel_adjust_enabled( "viewmodel_adjust_enabled", "0", FCVAR_REPLICATED|FCVAR_CHEAT, "enabled viewmodel adjusting", vm_adjust_enable_callback );
+//---------------------------------------------------------------------
 
 
 
@@ -154,7 +156,7 @@ void CBaseCombatWeapon::GiveDefaultAmmo( void )
 }
 
 
-// Millers Lake - Problems - 26-8-2010: These ajust the offesets for the iron sights.
+// Millers Lake - Problems - 26-08-2010: These adjust the offsets for the iron sights.
 //----------------------------------------------------------------------------------------------------------------------------------------
 Vector CBaseCombatWeapon::GetIronsightPositionOffset( void ) const
 {
@@ -179,6 +181,8 @@ float CBaseCombatWeapon::GetIronsightFOVOffset( void ) const
 //-----------------------------------------------------------------------------------------------------------------------------------------
 
 
+// Millers Lake - Problems - 26-08-2010: Iron sights main functions.
+//-------------------------------------------------------------------------------------------------------------------------------
 bool CBaseCombatWeapon::IsIronsighted( void )
 {
 	return ( m_bIsIronsighted || viewmodel_adjust_enabled.GetBool() );
@@ -201,8 +205,6 @@ void CBaseCombatWeapon::EnableIronsights( void )
 	}
 }
 
-// Millers Lake - Problems - 26-08-2010: Iron sights
- //-------------------------------------------------------------------------------------------------------------------------------
 void CBaseCombatWeapon::DisableIronsights( void )
 {
 	if( !HasIronsights() || !m_bIsIronsighted )
@@ -217,11 +219,13 @@ void CBaseCombatWeapon::DisableIronsights( void )
 	{
 		m_bIsIronsighted = false;
 		m_flIronsightedTime = gpGlobals->curtime;
-	}
 }
- //-------------------------------------------------------------------------------------------------------------------------------
+}
+//-------------------------------------------------------------------------------------------------------------------------------
  
 
+// Millers Lake - Problems - 26-08-2010: Iron sights callback functions.
+//-------------------------------------------------------------------------------------------------------------------------------
 void vm_adjust_enable_callback( IConVar *pConVar, char const *pOldString, float flOldValue )
 {
 	ConVarRef sv_cheats( "sv_cheats" );
@@ -2362,7 +2366,7 @@ Activity CBaseCombatWeapon::ActivityOverride( Activity baseAct, bool *pRequired 
 
 
 #if defined( CLIENT_DLL )
-// Millers Lake - Problems :  proxy or smting, gonna fix comment later
+// Millers Lake - Problems - 26-08-2010: We don't just want the boolean to update, we also want the ironsights to toggle if it was changed only on the server. For this we need a RecvProxy on that variable.
 void RecvProxy_ToggleSights( const CRecvProxyData* pData, void* pStruct, void* pOut )
 {
 	CBaseCombatWeapon *pWeapon = (CBaseCombatWeapon*)pStruct;
@@ -2383,8 +2387,8 @@ BEGIN_PREDICTION_DATA( CBaseCombatWeapon )
 	DEFINE_PRED_FIELD_TOL( m_flNextSecondaryAttack, FIELD_FLOAT, FTYPEDESC_INSENDTABLE, TD_MSECTOLERANCE ),
 	DEFINE_PRED_FIELD_TOL( m_flTimeWeaponIdle, FIELD_FLOAT, FTYPEDESC_INSENDTABLE, TD_MSECTOLERANCE ),
 
-	DEFINE_PRED_FIELD( m_bIsIronsighted, FIELD_BOOLEAN, FTYPEDESC_INSENDTABLE ), // Millers Lake - Problems - 26-08-2010: Iron sights
-	DEFINE_PRED_FIELD( m_flIronsightedTime, FIELD_FLOAT, FTYPEDESC_INSENDTABLE ), // Millers Lake - Problems - 26-08-2010: Iron sights
+	DEFINE_PRED_FIELD( m_bIsIronsighted, FIELD_BOOLEAN, FTYPEDESC_INSENDTABLE ), // Millers Lake - Problems - 26-08-2010: Iron Sights are enabled/disabled.
+	DEFINE_PRED_FIELD( m_flIronsightedTime, FIELD_FLOAT, FTYPEDESC_INSENDTABLE ), // Millers Lake - Problems - 26-08-2010: Time since Iron Sights were enabled.
 
 	DEFINE_PRED_FIELD( m_iPrimaryAmmoType, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD( m_iSecondaryAmmoType, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
@@ -2413,8 +2417,8 @@ BEGIN_PREDICTION_DATA( CBaseCombatWeapon )
 	DEFINE_FIELD( m_iPrimaryAmmoCount, FIELD_INTEGER ),
 	DEFINE_FIELD( m_iSecondaryAmmoCount, FIELD_INTEGER ),
 
-	DEFINE_FIELD( m_bIsIronsighted, FIELD_BOOLEAN ),// Millers Lake - Problems - 26-08-2010: Iron sights
-	DEFINE_FIELD( m_flIronsightedTime, FIELD_FLOAT ),// Millers Lake - Problems - 26-08-2010: Iron sights
+	DEFINE_FIELD( m_bIsIronsighted, FIELD_BOOLEAN ), // Millers Lake - Problems - 26-08-2010: Iron Sights are enabled/disabled.
+	DEFINE_FIELD( m_flIronsightedTime, FIELD_FLOAT ), // Millers Lake - Problems - 26-08-2010: Time since Iron Sights were enabled.
 
 	//DEFINE_PHYSPTR( m_pConstraint ),
 

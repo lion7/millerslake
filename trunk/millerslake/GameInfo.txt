@@ -8,6 +8,9 @@
 	{
 		SteamAppId				218		// This will mount all the GCFs we need (240=CS:S, 220=HL2).
 		ToolsAppId				211		// Tools will load this (ie: source SDK caches) to get things like materials\debug, materials\editor, etc.
+		AdditionalContentId		422		// Hl2 Ep2 content
+		AdditionalContentId		421		// Hl2 Ep2 materials
+		AdditionalContentId		213		// Hl2 Ep1 content
 		
 		//
 		// The code that loads this file automatically does a few things here:
@@ -30,6 +33,8 @@
 		SearchPaths
 		{
 			Game				|gameinfo_path|.
+			Game				ep2
+			Game				episodic
 			Game				hl2
 		}
 	}

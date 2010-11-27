@@ -75,16 +75,16 @@ extern int gEvilImpulse101;
 
 ConVar sv_autojump( "sv_autojump", "0" );
 
-ConVar hl2_walkspeed( "hl2_walkspeed", "150" );
-ConVar hl2_normspeed( "hl2_normspeed", "190" );
-ConVar hl2_sprintspeed( "hl2_sprintspeed", "320" );
+ConVar hl2_walkspeed( "hl2_walkspeed", "140" );
+ConVar hl2_normspeed( "hl2_normspeed", "175" );
+ConVar hl2_sprintspeed( "hl2_sprintspeed", "380" );
 
 ConVar hl2_darkness_flashlight_factor ( "hl2_darkness_flashlight_factor", "1" );
 
 #ifdef HL2MP
 	#define	HL2_WALK_SPEED 150
 	#define	HL2_NORM_SPEED 190
-	#define	HL2_SPRINT_SPEED 320
+	#define	HL2_SPRINT_SPEED 380
 #else
 	#define	HL2_WALK_SPEED hl2_walkspeed.GetFloat()
 	#define	HL2_NORM_SPEED hl2_normspeed.GetFloat()
@@ -147,7 +147,7 @@ static impactdamagetable_t gCappedPlayerImpactDamageTable =
 	0.0f,		// large mass in kg (no large mass effects)
 	1.0f,		// large mass scale
 	2.0f,		// large mass falling scale
-	320.0f,		// min velocity for player speed to cause damage
+	290.0f,		// min velocity for player speed to cause damage
 
 };
 
@@ -224,7 +224,7 @@ void CC_ToggleZoom( void )
 
 		if( pHL2Player && pHL2Player->IsSuitEquipped() )
 		{
-			pHL2Player->ToggleZoom();
+			//pHL2Player->ToggleZoom(); -- Millers Lake - Problems - 26-08-2010: Hacky but we don't want zoom in our mod, not the right theme + wrecks iron sights.
 		}
 	}
 }

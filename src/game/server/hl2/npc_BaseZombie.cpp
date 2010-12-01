@@ -761,46 +761,9 @@ bool CNPC_BaseZombie::ShouldBecomeTorso( const CTakeDamageInfo &info, float flDa
 //-----------------------------------------------------------------------------
 HeadcrabRelease_t CNPC_BaseZombie::ShouldReleaseHeadcrab( const CTakeDamageInfo &info, float flDamageThreshold )
 {
-	if ( m_iHealth <= 0 )
-	{
-		if ( info.GetDamageType() & DMG_REMOVENORAGDOLL )
-			return RELEASE_NO;
-
-		if ( info.GetDamageType() & DMG_SNIPER )
-			return RELEASE_RAGDOLL;
-
-		// If I was killed by a bullet...
-		if ( info.GetDamageType() & DMG_BULLET )
-		{
-			if( m_bHeadShot ) 
-			{
-				if( flDamageThreshold > 0.25 )
-				{
-					// Enough force to kill the crab.
-					return RELEASE_RAGDOLL;
-				}
-			}
-			else
-			{
-				// Killed by a shot to body or something. Crab is ok!
-				return RELEASE_IMMEDIATE;
-			}
-		}
-
-		// If I was killed by an explosion, release the crab.
-		if ( info.GetDamageType() & DMG_BLAST )
-		{
-			return RELEASE_RAGDOLL;
-		}
-
-		if ( m_fIsTorso && IsChopped( info ) )
-		{
-			return RELEASE_RAGDOLL_SLICED_OFF;
-		}
-	}
-
-	return RELEASE_NO;
+	return ( m_iHealth <= 0 && m_fIsTorso && IsChopped( info ) )?RELEASE_RAGDOLL_SLICED_OFF:RELEASE_NO;
 }
+
 
 //-----------------------------------------------------------------------------
 // Purpose: 

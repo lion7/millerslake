@@ -1097,7 +1097,7 @@ void CNPC_BaseZombie::DieChopped( const CTakeDamageInfo &info )
 
 	}
 
-	if ( UTIL_ShouldShowBlood( BLOOD_COLOR_YELLOW ) )
+	if ( UTIL_ShouldShowBlood( BLOOD_COLOR_RED ) )
 	{
 		int i;
 		Vector vecSpot;
@@ -1111,7 +1111,7 @@ void CNPC_BaseZombie::DieChopped( const CTakeDamageInfo &info )
 			vecSpot.y += random->RandomFloat( -12, 12 ); 
 			vecSpot.z += random->RandomFloat( -4, 16 ); 
 
-			UTIL_BloodDrips( vecSpot, vec3_origin, BLOOD_COLOR_YELLOW, 50 );
+			UTIL_BloodDrips( vecSpot, vec3_origin, BLOOD_COLOR_RED, 50 );
 		}
 
 		for ( int i = 0 ; i < 4 ; i++ )

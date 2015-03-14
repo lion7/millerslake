@@ -1,0 +1,117 @@
+Still in the planning stages, this list may be changed alot so keep up-to-date
+
+**Code**
+
+---
+
+
+
+New Weapons:
+
+
+Double Barreled Shotgun
+http://t0.gstatic.com/images?q=tbn:ANd9GcTOogjhBmVw4pyiS-slmONx3KEnwTbap8zVzVDKQx6Em-hWwWw&t=1&usg=__Z77athA9JeV7AS1R4JkCE3w-LPM=
+http://en.wikipedia.org/wiki/Ithaca_Auto_%26_Burglar
+
+
+Hunting rifle
+either
+Lee enfield Mk1 no 3**or no 4 in .303 british
+http://t0.gstatic.com/images?q=tbn:ANd9GcQJd0yQg2ix4LxgMvjPcwgheULPswRpI2U3OLlR2JTSDCHgrnI&t=1&usg=__YpNCBm8SMa7zB-vD5kiMjkV54aU=
+or
+Springfield M1903 .30-06
+![http://upload.wikimedia.org/wikipedia/commons/3/3c/Rifle_Springfield_M1903A4_with_M84_sight.jpg](http://upload.wikimedia.org/wikipedia/commons/3/3c/Rifle_Springfield_M1903A4_with_M84_sight.jpg)
+http://en.wikipedia.org/wiki/M1903_Springfield_rifle
+or
+Superior Grade Mini Mauser (7.62X39mm caliber)
+![http://mullensgunsandammo.tripod.com/sitebuildercontent/sitebuilderpictures/superiorgrademinimauser223.jpg](http://mullensgunsandammo.tripod.com/sitebuildercontent/sitebuilderpictures/superiorgrademinimauser223.jpg)**
+
+Lever action bear gun.
+Chambered in .45-70 400gr projectiles.
+http://en.wikipedia.org/wiki/Winchester_Rifle#Winchester_Model_1886
+
+Pistol.
+M1911 in .45 ACP
+http://en.wikipedia.org/wiki/M1911
+And
+http://en.wikipedia.org/wiki/Smith_and_Wesson_Model_29
+
+Iron sights & scopes - Maybe Dynamic
+
+Random zombie material - Easy
+
+Remove Headcrabs from the npc\_zombies - Heaps of tutorials on this
+
+New Npc's:
+
+
+-Bear
+
+-Zombie Bear
+
+-Zombie Rabbits?
+
+
+May need a more aggressive system to dull out ai for the npc's.
+-eg, after 20m, zombies ai goes to sleep, after 50m zombies ai is almost non-existant? also might have to edit there sound.
+
+Introduce Inventory - Resident Evil style
+
+
+---
+
+
+<br><br><br>
+
+<b>Models</b>
+<hr />
+
+
+Nature models<br>
+<br>
+-Trees<br>
+<br>
+-Rocks<br>
+<br>
+-Logs<br>
+<br>
+<br>
+Weapon Models - may use some out of css although they are kinda not what were looking for.<br>
+<br>
+- Winchester, Double Barreled Shotgun<br>
+<br>
+- Hunting rifle - Wooden stock<br>
+<br>
+<br>
+<hr />
+<br><br><br>
+
+
+<b>Maps</b>
+<hr />
+
+
+Base Map<br>
+10-20 houses/cabins/cotages<br>
+<br>
+The Mill<br>
+<br>
+<hr />
+
+<br><br><br>
+
+<b>Materials/Art</b>
+<hr />
+
+
+Finish off Main Menu Background image<br>
+<hr />
+<br><br><br>
+<b>Other</b>
+<hr />
+
+
+Dev Blog<br>
+Development discusion board.<br>
+<br>
+<hr />
